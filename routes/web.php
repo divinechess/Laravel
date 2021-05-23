@@ -18,8 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    echo "This is the home page";
+});
+
 Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact',[ContactController::class,'index']);
+Route::get('/contact blah blah blah zzz',[ContactController::class,'index'])->name('con');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
