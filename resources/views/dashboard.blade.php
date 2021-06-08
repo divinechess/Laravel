@@ -2,8 +2,10 @@
     <x-slot name="header">
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-
+          Hi.. <b> {{ Auth::user()->name }}</b>
+                <b style="float:right">Total users
+                <span>{{ count($users) }}  </span>
+                </b>
 
         </h2>
     </x-slot>
@@ -21,12 +23,14 @@
                    </tr>
                    </thead>
                    <tbody>
+
+                   @php ($i = 1)
                         @foreach($users as $row)
                    <tr>
-                       <th scope="row">1</th>
-                       <td>{{$row->name}}</td>
-                       <td>{{$row->email}}</td>
-                       <td>{{$row->created_at}}</td>
+                       <th scope="row">{{ $i++ }}</th>
+                       <td>{{ $row->name }}</td>
+                       <td>{{ $row->email }}</td>
+                       <td>{{ Carbon\Carbon::parse( $row->created_at)->diffForHumans() }}</td>
                    </tr>
                         @endforeach
 
