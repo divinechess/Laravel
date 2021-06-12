@@ -29,28 +29,33 @@
                         <th scope="col">Category Name</th>
                         <th scope="col">User</th>
                         <th scope="col">Created at</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @php($i = 1)
+                    {{-- @php($i = 1) --}}
                         @foreach($categories as $category)
                         <tr>
-                            <th scope="row">{{$i++}}</th>
+                            <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
                             <td>{{ $category->category_name }}</td>
-                            <td>{{ $category->user_id }}</td>
+                            <td>{{ $category->user->name }}</td>
                             @if($category->created_at == NULL)
                                 <td><span class="text-danger">No date set</span></td>
                             @else
-                            <td>{{ $category->created_at->diffForHumans() }}</td>
+                            <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
 
                             @endif
+                            <td>
+                            <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
+                            <a href="" class="btn btn-danger">Delete</a>
+                            </td>
                         </tr>
                         @endforeach
 
 
                     </tbody>
                 </table>
-
+                {{ $categories->links() }} {{--  variable called outside the table --}}
                         </div>
 
                 </div>
