@@ -36,13 +36,13 @@
                             {{-- @php($i = 1) --}}
                             @foreach($brands as $brand)
                                 <tr>
-                                    <th scope="row">{{$brand->firstItem()+$loop->index}}</th>
+                                    <th scope="row">{{$brands->firstItem()+$loop->index}}</th>
                                     <td>{{ $brand->brand_name }}</td>
-                                    <td><img src="" alt=""></td>
+                                    <td><img src="{{ asset($brand->brand_image) }}" style="height: 40px; width: 70px"></td>
                                     @if($brand->created_at == NULL)
                                         <td><span class="text-danger">No date set</span></td>
                                     @else
-                                        <td>{{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
+                                        <td>{{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }}</td>
 
                                     @endif
                                     <td>
@@ -64,7 +64,7 @@
                     <div class="card">
                         <div class="card-header">Add Brand</div>
                         <div class="card-body">
-                            <form action="{{route('store.category')}}" method="POST">
+                            <form action="{{route('store.brand')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Brand Name</label>

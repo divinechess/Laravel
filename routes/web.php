@@ -53,3 +53,4 @@ Route::get('/permdelete/category/{id}',[CategoryController::class,'PermDelete'] 
 
 // For Brand Route
 Route::get('/brand/all',[BrandController::class,'AllBrand'] )->name('all.brand');
+Route::post('/brand/add',[BrandController::class,'StoreBrand'] )->name('store.brand');
