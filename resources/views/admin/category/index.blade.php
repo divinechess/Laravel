@@ -35,10 +35,10 @@
                     <tbody>
                     {{-- @php($i = 1) --}}
                         @foreach($categories as $category)
-                        <tr>
+                           <tr>
                             <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
                             <td>{{ $category->category_name }}</td>
-                            <td>{{ $category->user->name }}</td>
+                            <td>{{ $category->user->name }}</td> {{-- should be $category->user_id not $category->user->name --}}
                             @if($category->created_at == NULL)
                                 <td><span class="text-danger">No date set</span></td>
                             @else
@@ -109,7 +109,7 @@
                                 <tr>
                                     <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
                                     <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->user->name }}</td>
+                                    <td>{{ $category->user->name }}</td>  {{-- should be $category->user_id not $category->user->name --}}
                                     @if($category->created_at == NULL)
                                         <td><span class="text-danger">No date set</span></td>
                                     @else

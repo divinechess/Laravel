@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+Route::get('/email/verify', function () {
+   return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,3 +64,4 @@ Route::get('brand/delete/{id}',[BrandController::class,'Delete'] );
 
 // Multi Image Route
 Route::get('/multi/image',[BrandController::class,'Multpic'] )->name('multi.image');
+Route::post('/multi/add',[BrandController::class,'StoreIMG'] )->name('store.image');
